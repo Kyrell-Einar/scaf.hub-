@@ -1,16 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { to } from '../lib/paths';
+import { project, channels } from '../data/project';
 ---
 <BaseLayout title="Downloads — SCAF Hub" description="Versões oficiais do SCAF para Minecraft Bedrock e informações sobre builds Java.">
   <section class="page-shell page-hero"><div class="eyebrow">SCAF / Downloads</div><h1 class="page-title">A versão certa, sem adivinhação.</h1><p class="page-intro">Releases públicas e builds de teste ficam visualmente separadas. Um download só vira clicável quando existe um arquivo oficial definido.</p></section>
   <section class="section">
     <div class="content-grid">
-      <article class="panel paper release-card"><div><span class="tag available">PÚBLICO</span><h2>Bedrock v1.26 Optimized</h2><p>Release pública atual do add-on SCAF para Minecraft Bedrock.</p><div class="release-meta"><span>BEDROCK</span><span>.MCADDON</span><span>RELEASE</span></div><a class="button" aria-disabled="true" href="#" onclick="event.preventDefault()">Arquivo oficial ainda não conectado</a></div><strong>v1.26</strong></article>
-      <article class="panel release-card"><div><span class="tag testing">TEST BUILD</span><h2>Java v1.3.6</h2><p>Branch Java em desenvolvimento. Não é apresentada como release pública.</p><div class="release-meta"><span>JAVA</span><span>NEOFORGE</span><span>TESTE</span></div><a class="button" href="../community/">Como participar dos testes</a></div><strong>v1.3.6</strong></article>
+      <article class="panel paper release-card"><div><span class="tag available">PÚBLICO</span><h2>{project.bedrock.name}</h2><p>Release pública atual do add-on SCAF para Minecraft Bedrock.</p><div class="release-meta"><span>BEDROCK</span><span>.MCADDON</span><span>RELEASE</span></div><button class="button" type="button" disabled>Arquivo oficial ainda não conectado</button><p class="release-note">Quando a release oficial estiver no GitHub, este botão apontará diretamente para o asset publicado.</p></div><strong>v{project.bedrock.version}</strong></article>
+      <article class="panel release-card"><div><span class="tag testing">TEST BUILD</span><h2>{project.java.name}</h2><p>Branch Java em desenvolvimento. Não é apresentada como release pública.</p><div class="release-meta"><span>JAVA</span><span>NEOFORGE</span><span>TESTE</span></div><a class="button" href={to('community/')}>Como participar dos testes</a></div><strong>v{project.java.version}</strong></article>
     </div>
   </section>
-  <section class="section">
-    <div class="section-head"><div><div class="eyebrow">Release metadata</div><h2>O que precisa acompanhar um download.</h2></div></div>
+  <section class="section release-trust">
+    <div class="section-head"><div><div class="eyebrow">Release metadata</div><h2>O que precisa acompanhar um download.</h2></div><a class="button" href={`${channels.repository}/releases`} target="_blank" rel="noopener noreferrer">Ver releases no GitHub ↗</a></div>
     <div class="panel"><dl class="data-list"><div class="data-row"><dt>Plataforma</dt><dd>Bedrock ou Java</dd></div><div class="data-row"><dt>Versão do SCAF</dt><dd>Identificador claro e único</dd></div><div class="data-row"><dt>Minecraft</dt><dd>Faixa de compatibilidade verificada</dd></div><div class="data-row"><dt>Integridade</dt><dd>SHA-256 do arquivo publicado</dd></div><div class="data-row"><dt>Known issues</dt><dd>Problemas conhecidos da versão, sem esconder bug atrás de “funciona na minha máquina”.</dd></div></dl></div>
   </section>
 </BaseLayout>

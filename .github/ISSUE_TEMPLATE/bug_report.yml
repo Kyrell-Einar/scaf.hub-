@@ -1,0 +1,60 @@
+name: Bug report
+description: Reporte um problema reproduzível no SCAF
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Obrigado por ajudar a testar o SCAF. Quanto mais reproduzível o relatório, mais rápido ele pode ser validado.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Plataforma
+      options: [Minecraft Bedrock, Minecraft Java / NeoForge, SCAF Hub]
+    validations:
+      required: true
+  - type: input
+    id: scaf-version
+    attributes:
+      label: Versão do SCAF
+      placeholder: Ex. 1.26 ou Java 1.3.6
+    validations:
+      required: true
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Versão do Minecraft
+      placeholder: Ex. 1.xx.x
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Dispositivo / sistema
+      placeholder: Android, Windows, console, servidor dedicado...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      description: Liste os passos desde um estado inicial conhecido.
+      placeholder: "1. Coloque...\n2. Interaja...\n3. Observe..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: O que aconteceu
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidências
+      description: Screenshots, vídeo, logs ou informações extras, se houver.

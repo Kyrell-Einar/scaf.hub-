@@ -5,10 +5,11 @@ const items = [
   ['Início', ''],
   ['Downloads', 'downloads/'],
   ['Atualizações', 'updates/'],
+  ['Galeria', 'gallery/'],
   ['Docs', 'docs/'],
   ['Roadmap', 'roadmap/'],
   ['Comunidade', 'community/']
-];
+] as const;
 const active = (route: string) => route === '' ? currentPath === to('') : currentPath.startsWith(to(route));
 ---
 <a class="skip-link" href="#content">Pular para o conteúdo</a>
@@ -19,24 +20,35 @@ const active = (route: string) => route === '' ? currentPath === to('') : curren
       <span><strong>SCAF</strong><small>PROJECT HUB</small></span>
     </a>
     <nav class="desktop-nav" aria-label="Navegação principal">
-      {items.map(([label, route]) => <a class:list={{active: active(route)}} href={to(route)}>{label}</a>)}
+      {items.map(([label, route]) => <a class:list={{active: active(route)}} aria-current={active(route) ? 'page' : undefined} href={to(route)}>{label}</a>)}
     </nav>
     <div class="header-tools">
-      <a class:list={['project-link', {active: active('project/')}]} href={to('project/')}>Projeto</a>
+      <a class:list={['project-link', {active: active('project/')}]} aria-current={active('project/') ? 'page' : undefined} href={to('project/')}>Projeto</a>
       <button class="menu-button" type="button" data-menu-button aria-controls="mobile-menu" aria-expanded="false">Menu</button>
     </div>
   </div>
   <nav id="mobile-menu" class="mobile-menu" data-mobile-menu aria-label="Navegação móvel">
-    {items.map(([label, route]) => <a class:list={{active: active(route)}} href={to(route)}>{label}</a>)}
-    <a href={to('project/')}>Projeto</a>
+    {items.map(([label, route]) => <a class:list={{active: active(route)}} aria-current={active(route) ? 'page' : undefined} href={to(route)}>{label}</a>)}
+    <a class:list={{active: active('project/')}} aria-current={active('project/') ? 'page' : undefined} href={to('project/')}>Projeto</a>
   </nav>
 </header>
 <script is:inline>
   const button = document.querySelector('[data-menu-button]');
   const menu = document.querySelector('[data-mobile-menu]');
+  const closeMenu = () => {
+    button?.setAttribute('aria-expanded', 'false');
+    menu?.removeAttribute('data-open');
+  };
   button?.addEventListener('click', () => {
     const open = button.getAttribute('aria-expanded') === 'true';
     button.setAttribute('aria-expanded', String(!open));
     menu?.toggleAttribute('data-open', !open);
+  });
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeMenu();
+      button?.focus();
+    }
   });
 </script>

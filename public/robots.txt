@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kyrell-einar.github.io/scaf.hub-/sitemap.xml

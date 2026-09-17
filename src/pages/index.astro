@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { to } from '../lib/paths';
+import { project } from '../data/project';
 ---
-<BaseLayout title="SCAF Hub — Projeto, downloads e desenvolvimento">
+<BaseLayout title="SCAF Hub — Projeto, downloads e desenvolvimento" description="Hub oficial do projeto SCAF: downloads, atualizações, galeria, documentação, roadmap e comunidade.">
   <section class="hero-wrap">
     <div class="hero-grid">
       <div class="hero-copy">
@@ -11,20 +12,20 @@ import { to } from '../lib/paths';
         <p class="hero-lead">O ponto central do projeto: baixe a versão certa, acompanhe o desenvolvimento, consulte documentação e saiba exatamente o que está público, em teste ou planejado.</p>
         <div class="button-row"><a class="button primary" href={to('downloads/')}>Baixar SCAF</a><a class="button" href={to('updates/')}>Ver últimas mudanças</a></div>
       </div>
-      <figure class="hero-media media-slot"><div class="media-slot-art"><span>SCAF</span><b>MAIN DINING</b><small>SCREENSHOT SLOT</small></div><figcaption class="media-label"><span>BUILD PREVIEW / MAIN DINING</span><span>IN-GAME</span></figcaption></figure>
+      <figure class="hero-media media-slot"><div class="media-slot-art"><span>SCAF</span><b>MAIN DINING</b><small>MEDIA ARCHIVE READY</small></div><figcaption class="media-label"><span>BUILD PREVIEW / MAIN DINING</span><span>IN-GAME</span></figcaption></figure>
     </div>
-    <div class="status-rail">
-      <div><small>Status do projeto</small><strong><span class="status-dot"></span>Desenvolvimento ativo</strong></div>
-      <div><small>Bedrock público</small><strong>v1.26</strong></div>
-      <div><small>Java test build</small><strong>v1.3.6</strong></div>
-      <div><small>Foco atual</small><strong>Correções + otimização</strong></div>
+    <div class="status-rail" aria-label="Resumo do estado do projeto">
+      <div><small>Status do projeto</small><strong><span class="status-dot"></span>{project.status}</strong></div>
+      <div><small>Bedrock público</small><strong>v{project.bedrock.version}</strong></div>
+      <div><small>Java test build</small><strong>v{project.java.version}</strong></div>
+      <div><small>Foco atual</small><strong>{project.focus}</strong></div>
     </div>
   </section>
 
   <section class="section section-paper">
     <div class="section-head"><div><div class="eyebrow">Acesso rápido</div><h2>Entre pelo caminho certo.</h2></div><p>O Hub organiza o conteúdo pela tarefa que você quer resolver, sem transformar a navegação em painel de avião.</p></div>
     <div class="quick-grid">
-      <a class="quick-card" data-index="01" href={to('downloads/')}><small>JOGAR</small><h3>Downloads</h3><p>Versões oficiais, compatibilidade, changelog e checksum em um só lugar.</p></a>
+      <a class="quick-card" data-index="01" href={to('downloads/')}><small>JOGAR</small><h3>Downloads</h3><p>Versões oficiais, compatibilidade, changelog e integridade do arquivo.</p></a>
       <a class="quick-card" data-index="02" href={to('docs/')}><small>ENTENDER</small><h3>Documentação</h3><p>Instalação, plataformas, servidores, FAQ e guias técnicos.</p></a>
       <a class="quick-card" data-index="03" href={to('roadmap/')}><small>ACOMPANHAR</small><h3>Roadmap</h3><p>O que está concluído, ativo, planejado e o que ainda não tem data.</p></a>
     </div>
@@ -33,14 +34,14 @@ import { to } from '../lib/paths';
   <section class="section">
     <div class="section-head"><div><div class="eyebrow">Development pulse</div><h2>O que mudou de verdade.</h2></div><a class="button" href={to('updates/')}>Abrir newsroom</a></div>
     <div class="updates-grid">
-      <article class="update-card featured"><small>JAVA</small><h3>Java Port v1.3.6 — animatrônicos renderizando corretamente</h3><p>Modelos e texturas já carregam no NeoForge. Hitboxes e rotação ainda precisam de correção.</p><span class="state">EM TESTE</span></article>
+      <article class="update-card featured"><small>JAVA</small><h3>Java Port v{project.java.version} — animatrônicos renderizando corretamente</h3><p>Modelos e texturas já carregam no NeoForge. Hitboxes e rotação ainda precisam de correção.</p><span class="state">EM TESTE</span></article>
       <article class="update-card"><small>JAVA</small><h3>Teste de blocos no NeoForge</h3><p>Blocos testados são reconhecidos e têm colisão; texturas seguem em auditoria.</p><span class="state">EM PROGRESSO</span></article>
-      <article class="update-card"><small>BEDROCK</small><h3>SCAF Remake v1.26 Optimized</h3><p>Correções, novos blocos, novos trajes e otimizações adicionais.</p><span class="state">DISPONÍVEL</span></article>
+      <article class="update-card"><small>BEDROCK</small><h3>{project.bedrock.name}</h3><p>Correções, novos blocos, novos trajes e otimizações adicionais.</p><span class="state">DISPONÍVEL</span></article>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-head"><div><div class="eyebrow">Built with SCAF</div><h2>O projeto aparece no jogo.</h2></div><p>Screenshots reais, sem esconder Minecraft atrás de um caminhão de efeitos.</p></div>
+    <div class="section-head"><div><div class="eyebrow">Built with SCAF</div><h2>O projeto aparece no jogo.</h2></div><a class="button" href={to('gallery/')}>Abrir galeria</a></div>
     <div class="gallery-strip">
       <figure class="gallery-tile media-slot"><div class="media-slot-art"><b>SECURITY OFFICE</b></div><span>SECURITY OFFICE</span></figure>
       <figure class="gallery-tile media-slot"><div class="media-slot-art"><b>BACKSTAGE</b></div><span>BACKSTAGE</span></figure>
@@ -54,7 +55,7 @@ import { to } from '../lib/paths';
     <div class="section-head"><div><div class="eyebrow">Roadmap</div><h2>Sem porcentagem inventada.</h2></div><a class="button" href={to('roadmap/')}>Roadmap completo</a></div>
     <div class="roadmap-list">
       <article class="road-row"><span class="n">01</span><h3>Fundação</h3><p>Estrutura, direção visual e documentação base.</p><b>CONCLUÍDO</b></article>
-      <article class="road-row"><span class="n">02</span><h3>Sistemas Bedrock</h3><p>Correções, otimização e conteúdo depois da v1.26.</p><b>ATIVO</b></article>
+      <article class="road-row"><span class="n">02</span><h3>Sistemas Bedrock</h3><p>Correções, otimização e conteúdo depois da v{project.bedrock.version}.</p><b>ATIVO</b></article>
       <article class="road-row"><span class="n">03</span><h3>Port para Java</h3><p>Blocos, colisão, modelos e texturas em testes.</p><b>ATIVO</b></article>
       <article class="road-row"><span class="n">04</span><h3>Otimização</h3><p>Renderização, entidades, mobile e multiplayer.</p><b>ATIVO</b></article>
     </div>

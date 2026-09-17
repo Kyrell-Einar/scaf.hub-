@@ -1,9 +1,15 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { to } from '../lib/paths';
 import '../styles/global.css';
-interface Props { title: string; description?: string; }
-const { title, description = 'SCAF Hub — downloads, desenvolvimento, documentação e comunidade do projeto SCAF.' } = Astro.props;
+import '../styles/enhancements.css';
+interface Props { title: string; description?: string; noindex?: boolean; }
+const {
+  title,
+  description = 'SCAF Hub — downloads, desenvolvimento, documentação e comunidade do projeto SCAF.',
+  noindex = false
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -13,7 +19,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b0f15" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href={to('favicon.svg')} type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SCAF Hub" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
   </head>
   <body>

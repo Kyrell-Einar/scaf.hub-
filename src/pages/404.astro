@@ -2,4 +2,4 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { to } from '../lib/paths';
 ---
-<BaseLayout title="Página não encontrada — SCAF Hub"><section class="page-shell page-hero"><div class="eyebrow">404 / Lost backstage</div><h1 class="page-title">Essa sala não existe.</h1><p class="page-intro">Ou a URL mudou, ou alguém colocou uma porta onde não devia.</p><div class="button-row"><a class="button primary" href={to('')}>Voltar ao início</a></div></section></BaseLayout>
+<BaseLayout title="Página não encontrada — SCAF Hub" noindex={true}><section class="page-shell page-hero"><div class="eyebrow">404 / Lost backstage</div><h1 class="page-title">Essa sala não existe.</h1><p class="page-intro">Ou a URL mudou, ou alguém colocou uma porta onde não devia.</p><div class="button-row"><a class="button primary" href={to('')}>Voltar ao início</a></div></section></BaseLayout>

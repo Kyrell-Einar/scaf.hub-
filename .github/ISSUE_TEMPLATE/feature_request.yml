@@ -1,0 +1,37 @@
+name: Sugestão
+description: Proponha conteúdo, sistema ou melhoria para o SCAF
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Categoria
+      options: [Bloco / prop, Sistema funcional, Animatrônico / personagem, Build / ferramenta de construção, SCAF Hub / documentação, Outro]
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Qual necessidade essa ideia resolve?
+      description: Explique onde ela seria usada e por que ajudaria builders ou jogadores.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposta
+      description: Descreva o comportamento ou conteúdo que você imagina.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Plataforma
+      options: [Ambas, Bedrock, Java, Hub / site, Não se aplica]
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Referências ou observações
+      description: Links, imagens ou detalhes que ajudem a entender a sugestão.
