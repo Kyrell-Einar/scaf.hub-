@@ -48,3 +48,7 @@ Builds de pull request e da `main` executam a checagem do Astro antes de qualque
 ## Mídia
 
 Os screenshots reais do projeto já foram separados do antigo HTML monolítico e estão preparados localmente. Eles devem entrar como arquivos de mídia independentes quando o fluxo de upload binário estiver disponível, em vez de voltar a Base64 embutido no HTML.
+
+## Estado
+
+Base pública do Hub 2.1 preparada para validação automática.
