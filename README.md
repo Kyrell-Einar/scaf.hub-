@@ -51,4 +51,4 @@ Os screenshots reais do projeto já foram separados do antigo HTML monolítico e
 
 ## Estado
 
-Base pública do Hub 2.1 preparada para validação automática.
+Base pública do Hub 2.1 preparada para validação automática pelo workflow do repositório.
