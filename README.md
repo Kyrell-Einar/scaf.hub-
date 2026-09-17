@@ -1,22 +1,28 @@
 # SCAF Hub
 
-Hub oficial do projeto SCAF (Six Cubes at Freddy's), reconstruído em Astro com foco em performance, acessibilidade e manutenção.
+Hub oficial do projeto SCAF (Six Cubes at Freddy's), feito em Astro e pensado para ser rápido, acessível e simples de manter.
 
-## Stack
+## O que já existe
 
-- Astro 7
-- HTML estático por padrão
-- CSS próprio, sem biblioteca visual pesada
-- GitHub Pages + GitHub Actions
+- Home e status de Bedrock/Java
+- Downloads separados por plataforma e estado
+- Newsroom de desenvolvimento
+- Galeria com filtros
+- Documentação
+- Roadmap
+- Comunidade com formulários estruturados de bug e sugestão via GitHub Issues
+- Página de projeto/equipe
+- SEO básico, sitemap, robots e favicon
+- Build/checagem automática e deploy no GitHub Pages
 
-## Desenvolvimento local
+## Desenvolvimento
 
 ```bash
 npm install
 npm run dev
 ```
 
-Validação e build:
+Validação:
 
 ```bash
 npm run build
@@ -24,16 +30,21 @@ npm run build
 
 ## Deploy
 
-Pushes para `main` disparam `.github/workflows/deploy.yml`. O repositório deve usar **GitHub Actions** como source em Settings → Pages.
+Pushes para `main` fazem build e deploy. Pull requests fazem apenas build/checagem. Em **Settings → Pages**, a origem deve ser **GitHub Actions**.
 
 ## Estrutura
 
 - `src/pages/`: rotas públicas
-- `src/components/`: navegação e elementos compartilhados
+- `src/components/`: elementos compartilhados
+- `src/data/`: dados centrais de versão/status
 - `src/styles/`: design system global
-- `public/assets/`: mídia real do projeto
-- `docs/AUDITORIA_SCAF_HUB_2.md`: decisões de UX, produto, segurança e arquitetura
+- `.github/ISSUE_TEMPLATE/`: bug reports e sugestões
+- `docs/`: decisões de UX, arquitetura e segurança
 
-## Estado
+## Qualidade
 
-A interface pública é funcional. Downloads oficiais e fluxos de comunidade continuam bloqueados até suas URLs/backends reais existirem; placeholders não são apresentados como ações válidas.
+Builds de pull request e da `main` executam a checagem do Astro antes de qualquer deploy.
+
+## Mídia
+
+Os screenshots reais do projeto já foram separados do antigo HTML monolítico e estão preparados localmente. Eles devem entrar como arquivos de mídia independentes quando o fluxo de upload binário estiver disponível, em vez de voltar a Base64 embutido no HTML.
