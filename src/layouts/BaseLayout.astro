@@ -1,19 +1,21 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { to } from '../lib/paths';
+import { localizableRoutes } from '../i18n';
+import { localizedTo, localeFromPath, routeFromPath, to } from '../lib/paths';
 import '../styles/global.css';
 import '../styles/enhancements.css';
+import '../styles/v22.css';
 interface Props { title: string; description?: string; noindex?: boolean; }
-const {
-  title,
-  description = 'SCAF Hub — downloads, desenvolvimento, documentação e comunidade do projeto SCAF.',
-  noindex = false
-} = Astro.props;
+const { title, description = 'SCAF Hub — downloads, desenvolvimento, documentação e comunidade do projeto SCAF.', noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const locale = localeFromPath(Astro.url.pathname);
+const route = routeFromPath(Astro.url.pathname);
+const hasAlternates = localizableRoutes.includes(route);
+const socialImage = new URL(to('og-image.svg'), Astro.site);
 ---
 <!doctype html>
-<html lang="pt-BR">
+<html lang={locale === 'pt' ? 'pt-BR' : locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,16 +23,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonical} />
+    {hasAlternates && <link rel="alternate" hreflang="pt-BR" href={new URL(localizedTo('pt', route), Astro.site)} />}
+    {hasAlternates && <link rel="alternate" hreflang="en" href={new URL(localizedTo('en', route), Astro.site)} />}
+    {hasAlternates && <link rel="alternate" hreflang="es" href={new URL(localizedTo('es', route), Astro.site)} />}
+    {hasAlternates && <link rel="alternate" hreflang="x-default" href={new URL(localizedTo('pt', route), Astro.site)} />}
     <link rel="icon" href={to('favicon.svg')} type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="SCAF Hub" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content={locale === 'pt' ? 'pt_BR' : locale === 'en' ? 'en_US' : 'es_ES'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <title>{title}</title>
   </head>
   <body>

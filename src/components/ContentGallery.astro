@@ -1,0 +1,35 @@
+---
+import { galleryItems } from '../data/gallery';
+import { to } from '../lib/paths';
+---
+<div class="gallery-filter-bar" role="group" aria-label="Filtrar galeria">
+  <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">Todos</button>
+  <button class="filter-chip" type="button" data-filter="build" aria-pressed="false">Builds</button>
+  <button class="filter-chip" type="button" data-filter="content" aria-pressed="false">Conteúdo</button>
+  <button class="filter-chip" type="button" data-filter="character" aria-pressed="false">Personagens</button>
+  <button class="filter-chip" type="button" data-filter="development" aria-pressed="false">Desenvolvimento</button>
+</div>
+<p class="gallery-count" aria-live="polite"><span data-gallery-count>{galleryItems.length}</span> itens exibidos</p>
+<div class="gallery-grid" data-gallery-grid>
+  {galleryItems.map((item) => <figure class="gallery-card" data-gallery-item data-category={item.category}><img src={to(`assets/media/${item.media}`)} alt={item.alt} width="960" height="540" loading="lazy" /><figcaption><span>{item.label}</span><strong>{item.title}</strong></figcaption></figure>)}
+</div>
+<script is:inline>
+  const filterButtons = [...document.querySelectorAll('[data-filter]')];
+  const galleryCards = [...document.querySelectorAll('[data-gallery-item]')];
+  const count = document.querySelector('[data-gallery-count]');
+  filterButtons.forEach((button) => button.addEventListener('click', () => {
+    const filter = button.getAttribute('data-filter');
+    let visible = 0;
+    filterButtons.forEach((candidate) => {
+      const selected = candidate === button;
+      candidate.classList.toggle('active', selected);
+      candidate.setAttribute('aria-pressed', String(selected));
+    });
+    galleryCards.forEach((card) => {
+      const show = filter === 'all' || card.getAttribute('data-category') === filter;
+      card.toggleAttribute('hidden', !show);
+      if (show) visible += 1;
+    });
+    if (count) count.textContent = String(visible);
+  }));
+</script>

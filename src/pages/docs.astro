@@ -1,17 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { channels } from '../data/project';
 ---
 <BaseLayout title="Documentação — SCAF Hub" description="Instalação, compatibilidade, testes e documentação técnica do projeto SCAF.">
   <section class="page-shell page-hero"><div class="eyebrow">SCAF / Docs</div><h1 class="page-title">Do instalar ao entender o sistema.</h1><p class="page-intro">Uma camada rápida para jogadores e outra técnica para builders, testers e quem quer mexer nas entranhas do projeto.</p></section>
   <section class="section docs-layout">
     <nav class="side-nav" aria-label="Seções da documentação"><a href="#instalacao">Instalação</a><a href="#compatibilidade">Compatibilidade</a><a href="#servidores">Servidores</a><a href="#testes">Testes</a><a href="#tecnico">Técnico</a><a href="#faq">FAQ</a></nav>
     <article class="prose">
-      <h2 id="instalacao">Instalação</h2><ol><li>Baixe somente o arquivo indicado na área de Downloads do Hub ou em uma release oficial.</li><li>No Bedrock, abra o arquivo <code>.mcaddon</code> com o Minecraft e aguarde a confirmação de importação.</li><li>Ative os pacotes exigidos no mundo e confira a versão de Minecraft indicada pela release.</li></ol><div class="notice">Se o Hub não mostrar um botão oficial, não existe download público conectado aqui ainda. Evite mirrors aleatórios.</div>
-      <h2 id="compatibilidade">Compatibilidade</h2><p>Cada release deve informar explicitamente a versão de Minecraft validada. Não assumimos compatibilidade só porque o jogo abriu. Mudanças de API, componentes ou renderização podem quebrar comportamento sem impedir a inicialização.</p>
-      <h2 id="servidores">Servidores</h2><p>Guias de multiplayer terão passos separados para mundo local, Realm e servidor dedicado quando esses cenários forem oficialmente testados. O Hub evita instruções não verificadas.</p>
-      <h2 id="testes">Builds de teste</h2><p>Uma test build serve para validar comportamento antes de uma release. Ela pode conter sistemas incompletos, logs extras ou regressões conhecidas. Relatórios devem incluir versão exata, plataforma, dispositivo e passos de reprodução.</p>
-      <h2 id="tecnico">Documentação técnica</h2><p>Comandos, functions, sistemas de segurança, entidades e regras de colocação serão mantidos no repositório em Markdown para revisão e histórico. Explicações rápidas ficam separadas de referência técnica detalhada.</p>
-      <h2 id="faq">FAQ</h2><h3>Bedrock e Java são a mesma versão?</h3><p>Não. São linhas de desenvolvimento diferentes e o Hub sempre identifica a plataforma.</p><h3>Uma build de teste é uma release?</h3><p>Não. Test build existe para validação e pode conter comportamento incompleto.</p><h3>Posso confiar em qualquer link com “SCAF” no nome?</h3><p>Não. O Hub e a página de releases do repositório são as referências para arquivos oficiais publicados.</p>
+      <h2 id="instalacao">Instalação</h2><ol><li>Use o <a class="text-link" href={channels.bedrockDownload} target="_blank" rel="noopener noreferrer">download oficial do CurseForge</a>.</li><li>No Bedrock, abra o arquivo <code>.mcaddon</code> com o Minecraft e aguarde a importação.</li><li>Ative os pacotes exigidos e confira a compatibilidade indicada pela release.</li></ol>
+      <h2 id="compatibilidade">Compatibilidade</h2><p>Cada release informa a plataforma e a compatibilidade conhecida. O jogo abrir não é prova suficiente de que todos os sistemas estão funcionando.</p>
+      <h2 id="servidores">Servidores</h2><p>Instruções de mundo local, Realm e servidor dedicado só entram aqui depois de validação. O Hub evita receita não testada.</p>
+      <h2 id="testes">Builds de teste</h2><p>Uma test build pode conter sistemas incompletos, regressões conhecidas e instrumentação extra. Relatórios precisam da versão exata e passos reproduzíveis.</p>
+      <h2 id="tecnico">Documentação técnica</h2><p>Comandos, functions, sistemas de segurança, entidades e regras de colocação devem ficar versionados no repositório em Markdown.</p>
+      <h2 id="faq">FAQ</h2><h3>Bedrock e Java são a mesma versão?</h3><p>Não. São linhas de desenvolvimento diferentes.</p><h3>Uma test build é uma release?</h3><p>Não. A separação existe justamente para ninguém instalar teste achando que é público estável.</p>
     </article>
   </section>
 </BaseLayout>

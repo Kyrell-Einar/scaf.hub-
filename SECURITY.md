@@ -1,5 +1,13 @@
 # Segurança
 
-Não abra uma issue pública para vulnerabilidades que exponham credenciais, bypass de autorização ou dados privados.
+Não publique em issue informações que exponham credenciais, tokens, bypass de autorização ou dados privados.
 
-O SCAF Hub público não deve conter segredos de API, tokens administrativos ou credenciais. Quando o projeto receber autenticação e backend, permissões administrativas deverão ser verificadas no servidor e uploads deverão ser validados por tipo, tamanho e autorização.
+## Canal privado
+
+1. Prefira o fluxo privado do GitHub em **Security → Report a vulnerability / Security Advisories**:
+   https://github.com/Kyrell-Einar/scaf.hub-/security/advisories/new
+2. Se essa opção não estiver disponível para a sua conta, entre no Discord oficial:
+   https://discord.gg/RftUqEUWPt
+   e peça contato privado com a equipe. Não cole detalhes sensíveis em canais públicos.
+
+O SCAF Hub não deve conter segredos de API, tokens administrativos ou credenciais. Futuras áreas autenticadas deverão validar autorização no servidor.

@@ -1,54 +1,62 @@
 ---
-import { to } from '../lib/paths';
+import BrandMark from './BrandMark.astro';
+import { localeFromPath, localizedTo, routeFromPath } from '../lib/paths';
+import { navLabels } from '../i18n';
 const currentPath = Astro.url.pathname;
+const locale = localeFromPath(currentPath);
+const labels = navLabels[locale];
 const items = [
-  ['Início', ''],
-  ['Downloads', 'downloads/'],
-  ['Atualizações', 'updates/'],
-  ['Galeria', 'gallery/'],
-  ['Docs', 'docs/'],
-  ['Roadmap', 'roadmap/'],
-  ['Comunidade', 'community/']
+  [labels.home, ''],
+  [labels.downloads, 'downloads'],
+  [labels.content, 'content'],
+  [labels.development, 'development'],
+  [labels.docs, 'docs'],
+  [labels.community, 'community']
 ] as const;
-const active = (route: string) => route === '' ? currentPath === to('') : currentPath.startsWith(to(route));
+const currentRoute = routeFromPath(currentPath);
+const active = (route: string) => route === '' ? currentRoute === '' : currentRoute === route || currentRoute.startsWith(route + '/');
+const languageRoute = ['downloads','content','development','docs','community','about'].includes(currentRoute) ? currentRoute : '';
 ---
 <a class="skip-link" href="#content">Pular para o conteúdo</a>
 <header class="site-header">
   <div class="header-shell">
-    <a class="brand" href={to('')} aria-label="SCAF Hub — início">
-      <span class="brand-mark" aria-hidden="true">S</span>
+    <a class="brand" href={localizedTo(locale, '')} aria-label="SCAF Hub — início">
+      <BrandMark />
       <span><strong>SCAF</strong><small>PROJECT HUB</small></span>
     </a>
     <nav class="desktop-nav" aria-label="Navegação principal">
-      {items.map(([label, route]) => <a class:list={{active: active(route)}} aria-current={active(route) ? 'page' : undefined} href={to(route)}>{label}</a>)}
+      {items.map(([label, route]) => <a class:list={{active: active(route)}} aria-current={active(route) ? 'page' : undefined} href={localizedTo(locale, route)}>{label}</a>)}
     </nav>
     <div class="header-tools">
-      <a class:list={['project-link', {active: active('project/')}]} aria-current={active('project/') ? 'page' : undefined} href={to('project/')}>Projeto</a>
+      <div class="language-switcher" aria-label="Idioma">
+        <a class:list={{active: locale === 'pt'}} href={localizedTo('pt', languageRoute)} lang="pt-BR">PT</a>
+        <a class:list={{active: locale === 'en'}} href={localizedTo('en', languageRoute)} lang="en">EN</a>
+        <a class:list={{active: locale === 'es'}} href={localizedTo('es', languageRoute)} lang="es">ES</a>
+      </div>
       <button class="menu-button" type="button" data-menu-button aria-controls="mobile-menu" aria-expanded="false">Menu</button>
     </div>
   </div>
   <nav id="mobile-menu" class="mobile-menu" data-mobile-menu aria-label="Navegação móvel">
-    {items.map(([label, route]) => <a class:list={{active: active(route)}} aria-current={active(route) ? 'page' : undefined} href={to(route)}>{label}</a>)}
-    <a class:list={{active: active('project/')}} aria-current={active('project/') ? 'page' : undefined} href={to('project/')}>Projeto</a>
+    {items.map(([label, route]) => <a class:list={{active: active(route)}} aria-current={active(route) ? 'page' : undefined} href={localizedTo(locale, route)}>{label}</a>)}
   </nav>
 </header>
 <script is:inline>
   const button = document.querySelector('[data-menu-button]');
   const menu = document.querySelector('[data-mobile-menu]');
-  const closeMenu = () => {
+  const isOpen = () => button?.getAttribute('aria-expanded') === 'true';
+  const closeMenu = (restoreFocus = false) => {
+    if (!isOpen()) return;
     button?.setAttribute('aria-expanded', 'false');
     menu?.removeAttribute('data-open');
+    if (restoreFocus) button?.focus();
   };
   button?.addEventListener('click', () => {
-    const open = button.getAttribute('aria-expanded') === 'true';
+    const open = isOpen();
     button.setAttribute('aria-expanded', String(!open));
     menu?.toggleAttribute('data-open', !open);
   });
-  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMenu(false)));
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeMenu();
-      button?.focus();
-    }
+    if (event.key === 'Escape' && isOpen()) closeMenu(true);
   });
 </script>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { to } from '../lib/paths';
+import { updates } from '../data/updates';
+import { roadmap } from '../data/roadmap';
+---
+<BaseLayout title="Desenvolvimento — SCAF Hub" description="Atualizações datadas e roadmap oficial do desenvolvimento SCAF.">
+  <section class="page-shell page-hero"><div class="eyebrow">SCAF / Desenvolvimento</div><h1 class="page-title">Mudanças com contexto e roadmap sem teatro.</h1><p class="page-intro">Updates têm data quando ela é conhecida. Roadmap usa estados, não porcentagens decorativas.</p></section>
+  <section class="section">
+    <div class="section-head"><div><div class="eyebrow">Newsroom</div><h2>Histórico recente.</h2></div></div>
+    <div class="timeline-list">{updates.map((item) => <article class="timeline-item"><time datetime={item.date ?? undefined}>{item.date ?? 'Data não confirmada'}</time><div><span class="tag">{item.area} · {item.state}</span><h3>{item.title}</h3><p>{item.summary}</p><a class="text-link" href={to(`updates/${item.slug}/`)}>Abrir update</a></div></article>)}</div>
+  </section>
+  <section class="section" id="roadmap">
+    <div class="section-head"><div><div class="eyebrow">Roadmap</div><h2>Estado real.</h2></div></div>
+    <div class="roadmap-list">{roadmap.map((item) => <article class="road-row"><span class="n">{item.id}</span><h3>{item.title}</h3><p>{item.description}</p><b>{item.state}</b></article>)}</div>
+  </section>
+</BaseLayout>

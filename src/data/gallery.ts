@@ -1,14 +1,10 @@
 export const galleryItems = [
-  { title: 'Main dining', category: 'build', label: 'BUILD' },
-  { title: 'Security office', category: 'build', label: 'BUILD' },
-  { title: 'Entrance', category: 'build', label: 'BUILD' },
-  { title: 'Backstage', category: 'build', label: 'BUILD' },
-  { title: 'Pizzeria', category: 'build', label: 'BUILD' },
-  { title: 'New blocks', category: 'content', label: 'CONTENT' },
-  { title: 'Characters', category: 'character', label: 'CHARACTERS' },
-  { title: 'Springlock suits', category: 'character', label: 'CHARACTERS' },
-  { title: 'Team testing suits', category: 'development', label: 'DEVELOPMENT' },
-  { title: 'FNaF 2 carousel', category: 'development', label: 'DEVELOPMENT' },
-  { title: 'Java animatronics', category: 'development', label: 'JAVA' },
-  { title: 'Java block tests', category: 'development', label: 'JAVA' }
+  { title: 'Main Dining', label: 'BUILD', category: 'build', media: 'main-dining.svg', alt: 'Salão principal construído no Minecraft com conteúdo do SCAF' },
+  { title: 'Security Office', label: 'BUILD', category: 'build', media: 'security-office.svg', alt: 'Sala de segurança construída no Minecraft com conteúdo do SCAF' },
+  { title: 'Backstage', label: 'BUILD', category: 'build', media: 'backstage.svg', alt: 'Backstage e oficina construídos no Minecraft com conteúdo do SCAF' },
+  { title: 'FNaF 2 Carousel', label: 'DEVELOPMENT', category: 'development', media: 'carousel.svg', alt: 'Modelo do carrossel de FNaF 2 desenvolvido para o SCAF' },
+  { title: 'New Blocks', label: 'CONTENT', category: 'content', media: 'new-blocks.svg', alt: 'Novos blocos temáticos do SCAF exibidos no Minecraft' },
+  { title: 'Java Animatronics', label: 'JAVA TEST', category: 'character', media: 'java-animatronics.svg', alt: 'Animatrônicos do port Java do SCAF renderizando no Minecraft' },
+  { title: 'Entrance Hall', label: 'BUILD', category: 'build', media: 'entrance.svg', alt: 'Hall de entrada construído no Minecraft com conteúdo do SCAF' },
+  { title: 'Pizzeria Interior', label: 'BUILD', category: 'build', media: 'hero-pizzeria.svg', alt: 'Interior de pizzaria construído no Minecraft usando o SCAF' }
 ] as const;

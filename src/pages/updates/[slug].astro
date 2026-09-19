@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { updates } from '../../data/updates';
+export function getStaticPaths() { return updates.map((update) => ({ params: { slug: update.slug }, props: { update } })); }
+const { update } = Astro.props;
+---
+<BaseLayout title={`${update.title} — SCAF Hub`} description={update.summary}>
+  <article class="page-shell article-page"><div class="eyebrow">{update.area} / {update.state}</div><h1 class="page-title">{update.title}</h1><p class="article-date"><time datetime={update.date ?? undefined}>{update.date ?? 'Data não confirmada'}</time></p><p class="page-intro">{update.summary}</p><section class="prose"><h2>Detalhes</h2><ul>{update.details.map((detail: string) => <li>{detail}</li>)}</ul></section></article>
+</BaseLayout>

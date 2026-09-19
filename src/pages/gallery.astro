@@ -1,40 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { galleryItems } from '../data/gallery';
+import ContentGallery from '../components/ContentGallery.astro';
 ---
-<BaseLayout title="Galeria — SCAF Hub" description="Builds, conteúdo, personagens e desenvolvimento do SCAF organizados em uma galeria própria.">
-  <section class="page-shell page-hero"><div class="eyebrow">SCAF / Gallery</div><h1 class="page-title">O projeto, organizado visualmente.</h1><p class="page-intro">Builds, conteúdo, personagens e testes ficam separados por categoria para você entender de onde cada coisa vem sem confundir desenvolvimento com release.</p></section>
-  <section class="section gallery-page">
-    <div class="gallery-filter-bar" role="group" aria-label="Filtrar galeria">
-      <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">Todos</button>
-      <button class="filter-chip" type="button" data-filter="build" aria-pressed="false">Builds</button>
-      <button class="filter-chip" type="button" data-filter="content" aria-pressed="false">Conteúdo</button>
-      <button class="filter-chip" type="button" data-filter="character" aria-pressed="false">Personagens</button>
-      <button class="filter-chip" type="button" data-filter="development" aria-pressed="false">Desenvolvimento</button>
-    </div>
-    <p class="gallery-count" aria-live="polite"><span data-gallery-count>{galleryItems.length}</span> itens exibidos</p>
-    <div class="gallery-grid" data-gallery-grid>
-      {galleryItems.map((item, index) => <figure class="gallery-card media-slot" data-gallery-item data-category={item.category}><div class="gallery-placeholder"><span>{String(index + 1).padStart(2, '0')}</span><b>{item.title}</b></div><figcaption><span>{item.label}</span><strong>{item.title}</strong></figcaption></figure>)}
-    </div>
-  </section>
-  <script is:inline>
-    const filterButtons = [...document.querySelectorAll('[data-filter]')];
-    const galleryCards = [...document.querySelectorAll('[data-gallery-item]')];
-    const count = document.querySelector('[data-gallery-count]');
-    filterButtons.forEach((button) => button.addEventListener('click', () => {
-      const filter = button.getAttribute('data-filter');
-      let visible = 0;
-      filterButtons.forEach((candidate) => {
-        const selected = candidate === button;
-        candidate.classList.toggle('active', selected);
-        candidate.setAttribute('aria-pressed', String(selected));
-      });
-      galleryCards.forEach((card) => {
-        const show = filter === 'all' || card.getAttribute('data-category') === filter;
-        card.toggleAttribute('hidden', !show);
-        if (show) visible += 1;
-      });
-      if (count) count.textContent = String(visible);
-    }));
-  </script>
+<BaseLayout title="Galeria — SCAF Hub" description="Arquivo visual de builds e conteúdo do SCAF.">
+  <section class="page-shell page-hero"><div class="eyebrow">SCAF / Galeria</div><h1 class="page-title">Arquivo visual.</h1><p class="page-intro">A galeria continua acessível por URL, enquanto a navegação principal usa a área mais ampla de Conteúdo.</p></section>
+  <section class="section gallery-page"><ContentGallery /></section>
 </BaseLayout>

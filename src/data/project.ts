@@ -1,11 +1,12 @@
 export const project = {
   status: 'Desenvolvimento ativo',
-  focus: 'Correções + otimização',
+  focus: 'FNaF 2 + correções + otimização',
   bedrock: {
     version: '1.26',
-    name: 'SCAF Remake v1.26 Optimized',
+    name: 'SIX CUBES AT FREDDY’S REMAKE',
     state: 'Público',
-    platform: 'Bedrock'
+    platform: 'Bedrock',
+    provider: 'CurseForge'
   },
   java: {
     version: '1.3.6',
@@ -18,5 +19,9 @@ export const project = {
 export const channels = {
   main: 'https://www.youtube.com/@Nova_core_addons',
   bruno: 'https://www.youtube.com/@bruno1987-itsme',
-  repository: 'https://github.com/Kyrell-Einar/scaf.hub-'
+  repository: 'https://github.com/Kyrell-Einar/scaf.hub-',
+  discord: 'https://discord.gg/RftUqEUWPt',
+  curseforge: 'https://www.curseforge.com/minecraft/mc-addons/six-cubes-at-freddys-remake',
+  bedrockDownload: 'https://www.curseforge.com/minecraft/mc-addons/six-cubes-at-freddys-remake/download/8695772',
+  security: 'https://github.com/Kyrell-Einar/scaf.hub-/security/advisories/new'
 } as const;

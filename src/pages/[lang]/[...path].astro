@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { localizedCopy } from '../../i18n';
+import { localizedTo } from '../../lib/paths';
+import { channels, project } from '../../data/project';
+import { updates } from '../../data/updates';
+import { roadmap } from '../../data/roadmap';
+import type { Locale } from '../../lib/paths';
+
+const routes = ['', 'downloads', 'content', 'development', 'docs', 'community', 'about'];
+export function getStaticPaths() {
+  return (['en','es'] as const).flatMap((lang) => routes.map((path) => ({ params: { lang, path: path || undefined }, props: { lang, path } })));
+}
+const { lang, path } = Astro.props as { lang: 'en'|'es'; path: string };
+const copy = localizedCopy[lang][(path || 'home') as keyof typeof localizedCopy.en];
+const title = path ? `${copy.title} — SCAF Hub` : 'SCAF Hub';
+---
+<BaseLayout title={title} description={copy.lead}>
+  <section class="page-shell page-hero blueprint-zone"><div class="eyebrow">{copy.eyebrow}</div><h1 class="page-title">{copy.title}</h1><p class="page-intro">{copy.lead}</p>
+    {(!path || path === 'downloads') && <div class="button-row"><a class="button primary" href={channels.bedrockDownload} target="_blank" rel="noopener noreferrer">{lang === 'en' ? 'Official download ↗' : 'Descarga oficial ↗'}</a>{!path && <a class="button" href={localizedTo(lang as Locale, 'development')}>{lang === 'en' ? 'See development' : 'Ver desarrollo'}</a>}</div>}
+  </section>
+  {path === 'content' && <section class="section"><div class="content-grid"><article class="panel"><h2>{lang==='en'?'Real media':'Contenido real'}</h2><p>{lang==='en'?'The Portuguese content gallery contains the current in-game screenshots while this locale layer keeps navigation and core project information translated.':'La galería principal contiene las capturas actuales mientras esta capa mantiene traducida la navegación y la información esencial.'}</p><a class="button" href={localizedTo('pt','content')}>{lang==='en'?'Open visual gallery':'Abrir galería visual'}</a></article><article class="panel"><h2>{lang==='en'?'Current focus':'Foco actual'}</h2><p>{project.focus}</p></article></div></section>}
+  {path === 'development' && <section class="section"><div class="timeline-list">{updates.slice(0,3).map((item) => <article class="timeline-item"><time>{item.date ?? '—'}</time><div><h2>{item.title}</h2><p>{item.summary}</p></div></article>)}</div><div class="roadmap-list localized-roadmap">{roadmap.slice(0,4).map((item) => <article class="road-row"><span class="n">{item.id}</span><h2>{item.title}</h2><p>{item.description}</p><b>{item.state}</b></article>)}</div></section>}
+  {path === 'docs' && <section class="section prose"><h2>{lang==='en'?'Installation':'Instalación'}</h2><p>{lang==='en'?'Download from the official CurseForge project, open the .mcaddon with Minecraft and verify the release compatibility before updating important worlds.':'Descarga desde el proyecto oficial de CurseForge, abre el .mcaddon con Minecraft y verifica la compatibilidad antes de actualizar mundos importantes.'}</p><h2>{lang==='en'?'Test builds':'Builds de prueba'}</h2><p>{lang==='en'?'Java test builds are not public Bedrock releases. Always report the exact version when testing.':'Las builds de prueba de Java no son releases públicas de Bedrock. Informa siempre la versión exacta al probar.'}</p></section>}
+  {path === 'community' && <section class="section"><div class="channel-grid"><article class="panel"><h2>GitHub Issues</h2><p>{lang==='en'?'Structured bug reports and suggestions.':'Bugs y sugerencias estructurados.'}</p><a class="button" href={channels.repository + '/issues'} target="_blank" rel="noopener noreferrer">GitHub ↗</a></article><article class="panel"><h2>Discord</h2><p>{lang==='en'?'Community, showcases and team contact.':'Comunidad, showcases y contacto con el equipo.'}</p><a class="button" href={channels.discord} target="_blank" rel="noopener noreferrer">Discord ↗</a></article></div></section>}
+  {path === 'about' && <section class="section content-grid"><article class="panel paper"><h2>SCAF</h2><p>{copy.lead}</p></article><article class="panel"><h2>{lang==='en'?'Platforms':'Plataformas'}</h2><p>Bedrock · Java / NeoForge</p></article></section>}
+</BaseLayout>
