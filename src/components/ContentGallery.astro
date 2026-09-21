@@ -11,7 +11,7 @@ import { to } from '../lib/paths';
 </div>
 <p class="gallery-count" aria-live="polite"><span data-gallery-count>{galleryItems.length}</span> itens exibidos</p>
 <div class="gallery-grid" data-gallery-grid>
-  {galleryItems.map((item) => <figure class="gallery-card" data-gallery-item data-category={item.category}><img src={to(`assets/media/${item.media}`)} alt={item.alt} width="960" height="540" loading="lazy" /><figcaption><span>{item.label}</span><strong>{item.title}</strong></figcaption></figure>)}
+  {galleryItems.map((item) => <figure class:list={['gallery-card', { contain: item.fit === 'contain' }]} data-gallery-item data-category={item.category}><img src={to(`assets/media/${item.media}`)} alt={item.alt} width="960" height="540" loading="lazy" decoding="async" /><figcaption><span>{item.label}</span><strong>{item.title}</strong></figcaption></figure>)}
 </div>
 <script is:inline>
   const filterButtons = [...document.querySelectorAll('[data-filter]')];
