@@ -7,3 +7,18 @@
 .gallery-placeholder{min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:22px;background:radial-gradient(circle at 82% 18%,rgba(231,75,69,.16),transparent 26%),linear-gradient(135deg,#111923,#1a2430 46%,#0f151d)}.gallery-placeholder span{font:700 9px ui-monospace,monospace;color:#6e7b8c;letter-spacing:.12em}.gallery-placeholder b{font-size:20px;text-transform:uppercase;letter-spacing:-.02em}.team-placeholder .avatar-slot{aspect-ratio:4/3;display:grid;place-items:center;background:radial-gradient(circle at 70% 20%,rgba(231,177,88,.12),transparent 28%),linear-gradient(135deg,#111923,#1a2430);font:800 clamp(42px,6vw,72px) ui-monospace,monospace;color:#657184;padding:0}.team-placeholder>div:last-child{padding:22px}.team-placeholder>div:last-child h3{margin-bottom:4px}
 @media(max-width:900px){.gallery-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.gallery-grid{grid-template-columns:1fr}.gallery-filter-bar{overflow:auto;flex-wrap:nowrap;padding-bottom:4px}.filter-chip{white-space:nowrap}}
+
+
+/* V45 — real project media and verified package metadata */
+.gallery-card.contain img{object-fit:contain;background:#090d13;padding:10px}
+.team-card img{aspect-ratio:4/3;object-fit:cover;object-position:center 30%;background:#0b1017}
+.package-verification{display:grid;gap:5px;margin:18px 0 8px;padding:14px 16px;border:1px solid rgba(14,20,32,.16);border-radius:10px;background:rgba(14,20,32,.05)}
+.panel:not(.paper) .package-verification{border-color:#2b3849;background:#0d141d}
+.package-verification small{font:700 9px ui-monospace,monospace;letter-spacing:.1em;color:var(--ink-muted)}
+.panel:not(.paper) .package-verification small{color:#8995a5}
+.package-verification strong{font-size:13px}
+.package-verification>span{font:700 10px ui-monospace,monospace;color:var(--ink-muted)}
+.panel:not(.paper) .package-verification>span{color:#8995a5}
+.package-verification code{display:block;max-width:100%;overflow-wrap:anywhere;font:600 9px/1.5 ui-monospace,monospace;color:var(--ink-muted)}
+.panel:not(.paper) .package-verification code{color:#8995a5}
+.package-verification p{margin:3px 0 0!important;font-size:11px!important}
