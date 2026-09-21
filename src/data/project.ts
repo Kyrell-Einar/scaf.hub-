@@ -1,9 +1,12 @@
 export const project = {
+  name: 'A Shift at Freddy’s',
+  formerName: 'Six Cubes at Freddy’s Remake',
+  renamedOn: '2026-09-19',
   status: 'Desenvolvimento ativo',
   focus: 'FNaF 2 + correções + otimização',
   bedrock: {
     version: '1.26',
-    name: 'SIX CUBES AT FREDDY’S REMAKE',
+    name: 'A SHIFT AT FREDDY’S',
     state: 'Público',
     platform: 'Bedrock',
     provider: 'CurseForge'
