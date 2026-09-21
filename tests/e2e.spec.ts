@@ -47,3 +47,34 @@ test('no broken internal navigation links on home', async ({ page, request }) =>
     expect(response.status(), href).toBeLessThan(400);
   }
 });
+
+
+test('verified Bedrock package stays consistent across download entry points', async ({ page, request }) => {
+  const expectedPackage = '/downloads/files/SCAF_Remake_v1.26_Optimized.mcaddon';
+  const entryPoints = [
+    '',
+    'downloads/',
+    'docs/',
+    'releases/bedrock-v1-26/',
+    'en/downloads/',
+    'es/downloads/'
+  ];
+
+  let canonicalHref = '';
+
+  for (const route of entryPoints) {
+    await page.goto(route);
+    const link = page.locator(`a[download][href$="${expectedPackage}"]`).first();
+    await expect(link, `missing verified package link on ${route || 'home'}`).toBeVisible();
+
+    const href = await link.getAttribute('href');
+    expect(href).toBeTruthy();
+
+    if (!canonicalHref) canonicalHref = href!;
+    expect(href).toBe(canonicalHref);
+  }
+
+  const response = await request.get(canonicalHref);
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type'] ?? '').not.toContain('text/html');
+});
