@@ -7,8 +7,8 @@ import { updates } from '../../data/updates';
 import { roadmap } from '../../data/roadmap';
 import type { Locale } from '../../lib/paths';
 
-const routes = ['', 'downloads', 'content', 'development', 'docs', 'community', 'about'];
 export function getStaticPaths() {
+  const routes = ['', 'downloads', 'content', 'development', 'docs', 'community', 'about'];
   return (['en','es'] as const).flatMap((lang) => routes.map((path) => ({ params: { lang, path: path || undefined }, props: { lang, path } })));
 }
 const { lang, path } = Astro.props as { lang: 'en'|'es'; path: string };
