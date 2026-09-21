@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { channels } from '../data/project';
+import { publicRelease } from '../data/releases';
+import { to } from '../lib/paths';
 ---
 <BaseLayout title="Documentação — SCAF Hub" description="Instalação, compatibilidade, testes e documentação técnica do projeto SCAF.">
   <section class="page-shell page-hero"><div class="eyebrow">SCAF / Docs</div><h1 class="page-title">Do instalar ao entender o sistema.</h1><p class="page-intro">Uma camada rápida para jogadores e outra técnica para builders, testers e quem quer mexer nas entranhas do projeto.</p></section>
   <section class="section docs-layout">
     <nav class="side-nav" aria-label="Seções da documentação"><a href="#instalacao">Instalação</a><a href="#compatibilidade">Compatibilidade</a><a href="#servidores">Servidores</a><a href="#testes">Testes</a><a href="#tecnico">Técnico</a><a href="#faq">FAQ</a></nav>
     <article class="prose">
-      <h2 id="instalacao">Instalação</h2><ol><li>Use o <a class="text-link" href={channels.bedrockDownload} target="_blank" rel="noopener noreferrer">download oficial do CurseForge</a>.</li><li>No Bedrock, abra o arquivo <code>.mcaddon</code> com o Minecraft e aguarde a importação.</li><li>Ative os pacotes exigidos e confira a compatibilidade indicada pela release.</li></ol>
+      <h2 id="instalacao">Instalação</h2><ol><li>Baixe o pacote Bedrock validado diretamente pelo <a class="text-link" href={to(publicRelease.localDownloadPath!)} download>SCAF Hub</a>. Se preferir, a página oficial no <a class="text-link" href={channels.bedrockDownload} target="_blank" rel="noopener noreferrer">CurseForge</a> continua disponível.</li><li>No Bedrock, abra <code>{publicRelease.packageReference?.fileName ?? '.mcaddon'}</code> com o Minecraft e aguarde a importação.</li><li>Ative os pacotes exigidos e confira a compatibilidade indicada para a release v{publicRelease.version} antes de atualizar um mundo importante.</li></ol>{publicRelease.packageReference && <p class="provider-note">Pacote verificado: {publicRelease.packageReference.fileSize} · SHA-256 <code>{publicRelease.packageReference.sha256}</code></p>}
       <h2 id="compatibilidade">Compatibilidade</h2><p>Cada release informa a plataforma e a compatibilidade conhecida. O jogo abrir não é prova suficiente de que todos os sistemas estão funcionando.</p>
       <h2 id="servidores">Servidores</h2><p>Instruções de mundo local, Realm e servidor dedicado só entram aqui depois de validação. O Hub evita receita não testada.</p>
       <h2 id="testes">Builds de teste</h2><p>Uma test build pode conter sistemas incompletos, regressões conhecidas e instrumentação extra. Relatórios precisam da versão exata e passos reproduzíveis.</p>
