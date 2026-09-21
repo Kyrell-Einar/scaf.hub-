@@ -28,7 +28,7 @@ export type Release = {
 export const releases: Release[] = [
   {
     slug: 'bedrock-v1-26',
-    title: 'SIX CUBES AT FREDDY’S REMAKE',
+    title: 'A SHIFT AT FREDDY’S',
     version: '1.26',
     platform: 'Bedrock',
     state: 'public',
@@ -38,8 +38,8 @@ export const releases: Release[] = [
     localDownloadPath: 'downloads/files/SCAF_Remake_v1.26_Optimized.mcaddon',
     downloadUrl: channels.bedrockDownload,
     projectUrl: channels.curseforge,
-    summary: 'Release pública do SCAF Remake para Bedrock, agora disponível para download direto no Hub e também pelo projeto oficial no CurseForge.',
-    changes: ['Novas texturas, animações e modelos em relação ao SCAF original.', 'Build otimizada para mobile com suporte a Vibrant Visuals.', 'Pacote público separado das builds internas do projeto.'],
+    summary: 'Release pública Bedrock de A Shift at Freddy’s, publicada originalmente sob o nome Six Cubes at Freddy’s Remake e agora disponível para download direto no Hub e também pelo projeto oficial no CurseForge.',
+    changes: ['Projeto renomeado para A Shift at Freddy’s em 19/09/2026 após votação da comunidade.', 'Novas texturas, animações e modelos em relação ao projeto original.', 'Build otimizada para mobile com suporte a Vibrant Visuals.', 'Pacote público separado das builds internas do projeto.'],
     knownIssues: ['Consulte a página do projeto e o Hub para avisos da versão antes de atualizar um mundo importante.'],
     packageReference: {
       fileName: 'SCAF_Remake_v1.26_Optimized.mcaddon',
