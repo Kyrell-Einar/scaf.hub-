@@ -7,7 +7,7 @@ import '../styles/global.css';
 import '../styles/enhancements.css';
 import '../styles/v22.css';
 interface Props { title: string; description?: string; noindex?: boolean; }
-const { title, description = 'SCAF Hub — downloads, desenvolvimento, documentação e comunidade do projeto SCAF.', noindex = false } = Astro.props;
+const { title, description = 'SCAF Hub — downloads, desenvolvimento, documentação e comunidade de A Shift at Freddy’s.', noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const locale = localeFromPath(Astro.url.pathname);
 const route = routeFromPath(Astro.url.pathname);
