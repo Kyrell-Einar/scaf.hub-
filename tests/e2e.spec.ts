@@ -78,3 +78,20 @@ test('verified Bedrock package stays consistent across download entry points', a
   expect(response.status()).toBe(200);
   expect(response.headers()['content-type'] ?? '').not.toContain('text/html');
 });
+
+
+test('mobile pages do not overflow the viewport horizontally', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+
+  for (const route of ['', 'docs/', 'downloads/', 'content/']) {
+    await page.goto(route);
+    const metrics = await page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      pageWidth: document.documentElement.scrollWidth,
+      bodyWidth: document.body.scrollWidth
+    }));
+
+    expect(metrics.pageWidth, `document overflow on ${route || 'home'}`).toBeLessThanOrEqual(metrics.viewport);
+    expect(metrics.bodyWidth, `body overflow on ${route || 'home'}`).toBeLessThanOrEqual(metrics.viewport);
+  }
+});
