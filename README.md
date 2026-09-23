@@ -1,6 +1,6 @@
 # SCAF Hub
 
-Hub oficial do projeto SCAF (Six Cubes at Freddy's), feito em Astro e pensado para ser rápido, acessível e simples de manter.
+Hub oficial de A Shift at Freddy's, anteriormente Six Cubes at Freddy's Remake. Feito em Astro e pensado para ser rápido, acessível e simples de manter.
 
 ## O que já existe
 

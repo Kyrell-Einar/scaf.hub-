@@ -4,16 +4,17 @@ import { to } from '../lib/paths';
 import { project, channels } from '../data/project';
 import { updates } from '../data/updates';
 import { roadmap } from '../data/roadmap';
+import { publicRelease } from '../data/releases';
 ---
-<BaseLayout title="SCAF Hub — Projeto, downloads e desenvolvimento" description="Hub oficial do projeto SCAF: download oficial, desenvolvimento, conteúdo, documentação e comunidade.">
+<BaseLayout title="SCAF Hub — Projeto, downloads e desenvolvimento" description="Hub oficial de A Shift at Freddy’s: download, desenvolvimento, conteúdo, documentação e comunidade.">
   <section class="hero-wrap blueprint-zone">
     <div class="hero-grid">
       <div class="hero-copy">
-        <div class="eyebrow">Minecraft fan project · SCAF</div>
+        <div class="eyebrow">Minecraft fan project · A Shift at Freddy’s</div>
         <h1><span>SCAF</span><em>HUB.</em></h1>
-        <p class="hero-lead">O ponto central do projeto: versão pública oficial, conteúdo real do addon, desenvolvimento documentado e suporte sem misturar release com test build.</p>
-        <div class="button-row"><a class="button primary" href={channels.bedrockDownload} target="_blank" rel="noopener noreferrer">Baixar SCAF ↗</a><a class="button" href={to('development/')}>Ver desenvolvimento</a></div>
-        <p class="provider-note">Download oficial hospedado no CurseForge por Mrsquirrel.</p>
+        <p class="hero-lead"><strong>A Shift at Freddy’s</strong>, anteriormente Six Cubes at Freddy’s Remake. O ponto central do projeto: versão pública oficial, conteúdo real do addon, desenvolvimento documentado e suporte sem misturar release com test build.</p>
+        <div class="button-row"><a class="button primary" href={to(publicRelease.localDownloadPath!)} download>Baixar .mcaddon</a><a class="button" href={channels.bedrockDownload} target="_blank" rel="noopener noreferrer">CurseForge ↗</a><a class="button" href={to('development/')}>Ver desenvolvimento</a></div>
+        <p class="provider-note">Pacote Bedrock v{publicRelease.version} validado no Hub. CurseForge continua como página oficial do projeto.</p>
       </div>
       <figure class="hero-media real-media"><img src={to('assets/media/build-interior.webp')} alt="Interior de pizzaria construído no Minecraft usando o SCAF" width="1100" height="495" fetchpriority="high" /><figcaption class="media-label"><span>BUILD PREVIEW / PIZZERIA</span><span>IN-GAME</span></figcaption></figure>
     </div>
